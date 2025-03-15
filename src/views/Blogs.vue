@@ -15,6 +15,7 @@
 </template>
 
 <script>
+// import { set } from "vue/types/umd";
 import BlogCard from "../components/BlogCard.vue";
 export default {
   name: "blogs",
@@ -23,6 +24,17 @@ export default {
     sampleBlogCards() {
       return this.$store.state.sampleBlogCards;
     },
+    editPost: {
+      get() {
+        return this.$store.state.editPost;
+      },
+      set(payload) {
+        this.$store.commit("toggleEditPost", payload);
+      },
+    },
+  },
+  beforeDestroy() {
+    this.$store.commit("toggleEditPost", false);
   },
 };
 </script>
