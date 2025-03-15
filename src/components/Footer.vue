@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <div class="container ">
+    <div class="container">
       <div class="left">
         <div class="col-1">
           <router-link class="header" :to="{ name: 'Home' }"
@@ -27,10 +27,10 @@
             <router-link class="link" :to="{ name: 'Blogs' }"
               >Blogs</router-link
             >
-            <router-link v-if="admin" class="link" :to="{ name: 'CreatePost' }"
+            <router-link class="link" to="#"
               >Create Post</router-link
             >
-            <router-link v-if="!user" class="link" :to="{ name: 'Login' }"
+            <router-link class="link" :to="{ name: 'Login' }"
               >Login In / Register</router-link
             >
           </ul>
