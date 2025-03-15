@@ -1,7 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 
-const firebaseConfig = {
+var firebaseConfig = {
   apiKey: "AIzaSyArHClbDI5B-BHkeuG-RVWZgHMyMct0v2g",
   authDomain: "fireblogsyt-4ea2f.firebaseapp.com",
   projectId: "fireblogsyt-4ea2f",
