@@ -26,8 +26,9 @@ export default {
     firebase.auth().onAuthStateChanged((user) => {
       this.$store.commit("updateUser", user);
       if (user) {
+        // const token = await user.getIdTokenResult();
+        // console.log(token.claims);
         this.$store.dispatch("getCurrentUser", user);
-        // console.log(`"email"= ${this.$store.state.profileEmail}`);
       }
     });
     this.checkRoute();
