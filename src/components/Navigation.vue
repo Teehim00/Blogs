@@ -19,6 +19,7 @@
         </ul>
         <div
           v-if="user"
+          :class="{ 'mobile-user-menu': mobile }"
           @click="toggleProfileMenu"
           class="profile"
           ref="profile"
@@ -29,8 +30,8 @@
               <p class="initials">{{ this.$store.state.profileInitials }}</p>
               <div class="right">
                 <p>
-                  {{ this.$store.state.profileFirstName
-                  }}{{ this.$store.state.profileLastName }}
+                  {{ this.$store.state.profileFirstName }}
+                  {{ this.$store.state.profileLastName }}
                 </p>
                 <p>{{ this.$store.state.profileUsername }}</p>
                 <p>{{ this.$store.state.profileEmail }}</p>
@@ -40,7 +41,7 @@
               <div class="option">
                 <router-link class="option" :to="{ name: 'Profile' }">
                   <userIcon class="icon" />
-                  <p>profile</p>
+                  <p>Profile</p>
                 </router-link>
               </div>
               <div v-if="admin" class="option">
@@ -62,9 +63,7 @@
     <transition name="mobile-nav">
       <ul class="mobile-nav" v-show="mobileNav">
         <router-link class="link" :to="{ name: 'Home' }">Home</router-link>
-        <router-link class="link" :to="{ name: 'Blogs' }"
-          >Blogs</router-link
-        >
+        <router-link class="link" :to="{ name: 'Blogs' }">Blogs</router-link>
         <router-link v-if="admin" class="link" :to="{ name: 'CreatePost' }"
           >Create Post</router-link
         >
@@ -131,7 +130,6 @@ export default {
       window.location.reload();
     },
   },
-
   computed: {
     user() {
       return this.$store.state.user;
@@ -150,6 +148,7 @@ header {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   z-index: 99;
+
   .link {
     font-weight: 500;
     padding: 0 8px;
@@ -159,6 +158,7 @@ header {
       color: #1eb8b8;
     }
   }
+
   nav {
     display: flex;
     padding: 25px 0;
