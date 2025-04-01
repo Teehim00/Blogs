@@ -15,3 +15,4 @@ const timestamp = firebase.firestore.FieldValue.serverTimestamp;
 
 export { timestamp };
 export default firebaseApp.firestore();
+
