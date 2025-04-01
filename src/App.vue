@@ -9,11 +9,10 @@
 </template>
 
 <script>
-import Navigation from "./components/Navigation.vue";
-import Footer from "./components/Footer.vue";
+import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
 import firebase from "firebase/app";
 import "firebase/auth";
-
 export default {
   name: "app",
   components: { Navigation, Footer },
@@ -26,8 +25,6 @@ export default {
     firebase.auth().onAuthStateChanged((user) => {
       this.$store.commit("updateUser", user);
       if (user) {
-        // const token = await user.getIdTokenResult();
-        // console.log(token.claims);
         this.$store.dispatch("getCurrentUser", user);
       }
     });
@@ -87,6 +84,7 @@ export default {
 .link-light {
   color: #fff;
 }
+
 .arrow {
   margin-left: 8px;
   width: 12px;
@@ -120,6 +118,7 @@ button,
     background-color: rgba(48, 48, 48, 0.7);
   }
 }
+
 .button-ghost {
   color: #000;
   padding: 0;

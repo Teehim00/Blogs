@@ -59,7 +59,9 @@ export default new Vuex.Store({
       state.blogPhotoName = payload.blogCoverPhotoName;
     },
     filterBlogPost(state, payload) {
-      state.blogPosts = state.blogPosts.filter((post) => post.blogID !== payload);
+      state.blogPosts = state.blogPosts.filter(
+        (post) => post.blogID !== payload
+      );
     },
     updateUser(state, payload) {
       state.user = payload;
@@ -78,7 +80,8 @@ export default new Vuex.Store({
     },
     setProfileInitials(state) {
       state.profileInitials =
-        state.profileFirstName.match(/(\b\S)?/g).join("") + state.profileLastName.match(/(\b\S)?/g).join("");
+        state.profileFirstName.match(/(\b\S)?/g).join("") +
+        state.profileLastName.match(/(\b\S)?/g).join("");
     },
     changeFirstName(state, payload) {
       state.profileFirstName = payload;
@@ -92,7 +95,9 @@ export default new Vuex.Store({
   },
   actions: {
     async getCurrentUser({ commit }, user) {
-      const dataBase = await db.collection("users").doc(firebase.auth().currentUser.uid);
+      const dataBase = await db
+        .collection("users")
+        .doc(firebase.auth().currentUser.uid);
       const dbResults = await dataBase.get();
       commit("setProfileInfo", dbResults);
       commit("setProfileInitials");
