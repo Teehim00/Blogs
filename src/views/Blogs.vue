@@ -7,7 +7,7 @@
       </div>
       <BlogCard
         :post="post"
-        v-for="(post, index) in sampleBlogCards"
+        v-for="(post, index) in blogPosts"
         :key="index"
       />
     </div>
@@ -15,14 +15,26 @@
 </template>
 
 <script>
+// import { set } from "vue/types/umd";
 import BlogCard from "../components/BlogCard.vue";
 export default {
   name: "blogs",
   components: { BlogCard },
   computed: {
-    sampleBlogCards() {
-      return this.$store.state.sampleBlogCards;
+    blogPosts() {
+      return this.$store.state.blogPosts;
     },
+    editPost: {
+      get() {
+        return this.$store.state.editPost;
+      },
+      set(payload) {
+        this.$store.commit("toggleEditPost", payload);
+      },
+    },
+  },
+  beforeDestroy() {
+    this.$store.commit("toggleEditPost", false);
   },
 };
 </script>

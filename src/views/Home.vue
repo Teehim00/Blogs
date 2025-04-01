@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <BlogPost :post="welcomeScreen" />
+    <BlogPost v-if="!user" :post="welcomeScreen" />
     <BlogPost
       :post="post"
-      v-for="(post, index) in sampleBlogPost"
+      v-for="(post, index) in blogPostsFeed"
       :key="index"
     />
     <div class="blog-card-wrap">
@@ -12,13 +12,13 @@
         <div class="blog-cards">
           <BlogCards
             :post="post"
-            v-for="(post, index) in sampleBlogCards"
+            v-for="(post, index) in blogPostsCards"
             :key="index"
           />
         </div>
       </div>
     </div>
-    <div class="updates">
+    <div v-if="!user" class="updates">
       <div class="container">
         <h2>never miss a post. Register for your free account today!</h2>
         <router-link class="router-button" to="#">
@@ -44,24 +44,29 @@ export default {
         welcomeScreen: true,
         photo: "coding",
       },
-      sampleBlogPost: [
-        {
-          title: "This is aFiller Title!",
-          blogHTML: "This is a filler blog post title!",
-          blogCoverPhoto: "beautiful-stories",
-        },
-        {
-          title: "This is a Filler Title2!",
-          blogHTML: "This is a filler blog post title!",
-          blogCoverPhoto: "designed-for-everyone",
-        },
-      ],
-
+      // sampleBlogPost: [
+      //   {
+      //     title: "This is aFiller Title!",
+      //     blogHTML: "This is a filler blog post title!",
+      //     blogCoverPhoto: "beautiful-stories",
+      //   },
+      //   {
+      //     title: "This is a Filler Title2!",
+      //     blogHTML: "This is a filler blog post title!",
+      //     blogCoverPhoto: "designed-for-everyone",
+      //   },
+      // ],
     };
   },
   computed: {
-    sampleBlogCards() {
-      return this.$store.state.sampleBlogCards;
+    blogPostsFeed() {
+      return this.$store.getters.blogPostsFeed;
+    },
+    blogPostsCards() {
+      return this.$store.getters.blogPostsCards;
+    },
+    user() {
+      return this.$store.state.user;
     },
   },
 };
